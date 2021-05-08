@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 
-const index = () => {
+const Index = () => {
   return (
     <div>
       <Layout>
@@ -13,4 +13,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

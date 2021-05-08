@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Header/index";
 
-const index = (props) => {
+const Index = (props) => {
   return (
     <>
       <Header />
@@ -10,4 +10,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default Index;

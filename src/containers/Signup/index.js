@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import Input from "../../components/ui/Input";
 
-const index = () => {
+const Index = () => {
   return (
     <>
       <Layout>
@@ -106,4 +106,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

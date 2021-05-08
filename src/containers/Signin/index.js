@@ -2,7 +2,16 @@ import React from "react";
 import Layout from "../../components/Layout";
 import Input from "../../components/ui/Input";
 
-const index = () => {
+import { login } from "../../actions";
+import { useDispatch } from "react-redux";
+
+const Index = () => {
+  const dispatch = useDispatch();
+  const userLogin = (e) => {
+    const user = { email: "jito@jito.com", password: "123456" };
+    e.preventDefault();
+    dispatch(login(user));
+  };
   return (
     <>
       <Layout>
@@ -17,7 +26,7 @@ const index = () => {
         <div className="mx-2 mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-12 ">
             <div className="mt-5 md:mt-0 md:col-start-5 md:col-end-9">
-              <form action="#" method="POST">
+              <form onSubmit={userLogin}>
                 <div className="shadow-md overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-green-100 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -74,4 +83,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

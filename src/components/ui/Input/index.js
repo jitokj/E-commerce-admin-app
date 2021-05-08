@@ -1,6 +1,6 @@
 import React from "react";
 
-const index = (props) => {
+const Index = (props) => {
   return (
     <input
       type={props.type}
@@ -13,4 +13,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default Index;
