@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import Input from "../../components/ui/Input";
 
-import { login } from "../../actions";
-import { useDispatch } from "react-redux";
+import { isUserloggedIn, login } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
 
 const Index = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserloggedIn());
+    }
+  }, [auth]);
+
   const userLogin = (e) => {
-    const user = { email: "jito@jito.com", password: "123456" };
+    const user = { email, password };
+    console.log("user in signin", user);
     e.preventDefault();
     dispatch(login(user));
+    setEmail("");
+    setPassword("");
   };
+
+  if (auth.authenticate) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <Layout>
@@ -41,8 +61,10 @@ const Index = () => {
                           type="email"
                           placeholder="Enter Your Email"
                           name="email"
-                          value=""
-                          onChange={() => {}}
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
                         />
                       </div>
 
@@ -57,8 +79,10 @@ const Index = () => {
                           type="password"
                           placeholder="Enter Your Password"
                           name="password"
-                          value=""
-                          onChange={() => {}}
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
                         />
                       </div>
                     </div>
