@@ -9,7 +9,7 @@ import { Redirect } from "react-router";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -18,7 +18,7 @@ const Index = () => {
     if (!auth.authenticate) {
       dispatch(isUserloggedIn());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   const userLogin = (e) => {
     const user = { email, password };

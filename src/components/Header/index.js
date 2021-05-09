@@ -2,17 +2,26 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import logo from "../../images/logo_admin.png";
 import { NavLink, Link } from "react-router-dom";
-
-const navigation = [
-  { name: "Sign In", href: "signin", current: false },
-  { name: "Sign Up", href: "signup", current: false },
-];
+import { useLocation } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
+  const location = useLocation();
+  const navigation = [
+    {
+      name: "Sign In",
+      href: "signin",
+      current: location.pathname === "/signin" ? true : false,
+    },
+    {
+      name: "Sign Up",
+      href: "signup",
+      current: location.pathname === "/signup" ? true : false,
+    },
+  ];
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -47,7 +56,7 @@ export default function Example() {
                         to={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-900 text-white"
+                            ? "bg-gray-900 text-green-400"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
