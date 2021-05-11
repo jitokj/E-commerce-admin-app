@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import Input from "../../components/ui/Input";
 
-import { isUserloggedIn, login } from "../../actions";
+import { login } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
@@ -13,12 +13,6 @@ const Index = () => {
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (!auth.authenticate) {
-      dispatch(isUserloggedIn());
-    }
-  }, [auth, dispatch]);
 
   const userLogin = (e) => {
     const user = { email, password };
@@ -37,7 +31,7 @@ const Index = () => {
       <Layout>
         {/* form */}
 
-        <div className="hidden sm:block" aria-hidden="true">
+        <div className="sm:block" aria-hidden="true">
           <div className="py-5 flex justify-center">
             <h2>Sign In</h2>
           </div>

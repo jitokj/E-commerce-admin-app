@@ -1,14 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import Layout from "../../components/Layout";
 import Input from "../../components/ui/Input";
 
 const Index = () => {
+  const auth = useSelector((state) => state.auth);
+  if (auth.authenticate) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <Layout>
         {/* form */}
 
-        <div className="hidden sm:block" aria-hidden="true">
+        <div className="sm:block" aria-hidden="true">
           <div className="py-5 flex justify-center">
             <h2>Sign Up</h2>
           </div>
